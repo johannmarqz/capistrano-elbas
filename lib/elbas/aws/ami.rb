@@ -35,11 +35,7 @@ module Elbas
 
       def delete
         aws_client.deregister_image image_id: id
-        index = 0
-        snapshots.each { |snapshot|
-          index += 1
-          snapshot.destroy if index > 3
-        }
+        snapshots.each(&:delete)
       end
 
       def self.create(instance, no_reboot: true)
