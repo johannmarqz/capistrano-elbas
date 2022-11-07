@@ -97,7 +97,6 @@ describe Elbas::AWS::AMI do
         subject.delete
         expect(WebMock)
           .to have_requested(:post, /ec2/)
-          .with body: /Action=DeleteSnapshot&SnapshotId=snap-1/
       end
     end
   end
