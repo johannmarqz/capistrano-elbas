@@ -15,7 +15,7 @@ namespace :elbas do
     fetch(:aws_autoscale_group_names).each do |aws_autoscale_group_name|
       info "Auto Scaling Group: #{aws_autoscale_group_name}"
       asg = Elbas::AWS::AutoscaleGroup.new aws_autoscale_group_name
-      index = 1
+      index = 0
 
       info "Creating AMI from a running instance..."
       ami = Elbas::AWS::AMI.create asg.instances.running.sample
@@ -29,7 +29,7 @@ namespace :elbas do
 
       info "Cleaning up old AMIs..."
       ami.ancestors.each do |ancestor|
-        i += 1
+        index += 1
         if index > 3
           info "Deleting old AMI: #{ancestor.id}"
           ancestor.delete
