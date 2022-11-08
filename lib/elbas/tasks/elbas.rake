@@ -29,6 +29,7 @@ namespace :elbas do
 
       info "Cleaning up old AMIs..."
       ami.ancestors.each do |ancestor|
+        i += 1
         if index > 3
           info "Deleting old AMI: #{ancestor.id}"
           ancestor.delete
