@@ -20,7 +20,6 @@ module Elbas
           default_version: latest.version_number.to_s,
           launch_template_id: latest.launch_template_id
         })
-        return unless response.successful?
 
         self.class.new(
           latest&.launch_template_id,
